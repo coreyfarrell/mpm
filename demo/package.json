@@ -1,0 +1,11 @@
+{
+	"name": "mpm-demo",
+	"version": "0.1.0",
+	"private": true,
+	"description": "Mapped Package Manager Demo",
+	"author": "Corey Farrell",
+	"license": "MIT",
+	"dependencies": {
+		"@cfware/shadow-element": "^0.13.0"
+	}
+}

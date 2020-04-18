@@ -1,0 +1,32 @@
+{
+	"name": "@coreyfarrell/mpm",
+	"version": "0.1.0",
+	"description": "Mapped Package Manager Experiment",
+	"type": "module",
+	"bin": "./install.js",
+	"scripts": {
+		"test": "cfware-lint .",
+		"demo": "cd demo && node ../install.js"
+	},
+	"engines": {
+		"node": ">=13.13.0"
+	},
+	"author": "Corey Farrell",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/coreyfarrell/mpm.git"
+	},
+	"bugs": {
+		"url": "https://github.com/coreyfarrell/mpm/issues"
+	},
+	"homepage": "https://github.com/coreyfarrell/mpm#readme",
+	"dependencies": {
+		"@npmcli/arborist": "0.0.0-pre.14",
+		"node-fetch": "^2.6.0",
+		"tar": "^6.0.1"
+	},
+	"devDependencies": {
+		"@cfware/lint": "^1.4.0"
+	}
+}
