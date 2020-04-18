@@ -21,15 +21,19 @@ export class Tree {
 	async build() {
 		await this.#arborist.buildIdealTree({legacyBundling: true});
 		this.#inventory = new Inventory();
-		this.#root = new Mappings(this.#inventory, this.#arborist.idealTree.children);
+		this.#root = new Mappings(this.#inventory, this.#arborist.idealTree.root);
 
 		await fs.mkdir('node_modules', {recursive: true});
 		for (const [id, item] of this.#inventory.entries()) {
+			if (!item.tar) {
+				break;
+			}
+
 			const packageDirectory = path.join('node_modules', id);
 			await fs.mkdir(packageDirectory, {recursive: true});
 			const response = await item.tar;
 			if (!response.ok) {
-				throw new Error(`[${item.id}: Unexpected response ${response.statusText} from ${item.resolved}`);
+				throw new Error(`[${item.resolved}]: Unexpected response ${response.statusText}`);
 			}
 
 			response.body.pipe(tar.extract({strip: 1, cwd: packageDirectory}));
@@ -42,7 +46,7 @@ export class Tree {
 
 		for (const [id, info] of this.#inventory.entries()) {
 			if (info.mappings.size !== 0) {
-				nodeMap.scoped[id] = info.mappings.getMappings(id);
+				nodeMap.scoped[id] = info.mappings.getMappings();
 			}
 		}
 

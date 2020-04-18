@@ -1,41 +1,21 @@
-import path from 'path';
-
 import fetch from 'node-fetch';
 
-const getScope = id => id.startsWith('@') ? id.split('/')[0] : '';
-
 export class Mappings extends Map {
-	constructor(inventory, children) {
+	constructor(inventory, node) {
 		super();
 
-		for (const [id, child] of children.entries()) {
-			const {version} = child.package;
-			const resolved = child.package.resolved || child.package._resolved;
-			const fullId = `${child.name}@${version}`;
+		for (const [id, {to: child}] of node.edgesOut.entries()) {
+			const fullId = `${child.name}@${child.package.version}`;
 			this.set(child.name, inventory.findOrCreate(fullId, () => ({
-				id,
 				fullId,
-				version,
-				resolved,
-				mappings: new Mappings(inventory, child.children, id),
-				tar: fetch(resolved)
+				resolved: child.package.resolved || child.package._resolved,
+				mappings: new Mappings(inventory, child),
+				tar: process.env.DO_FETCH === '1' ? fetch(resolved) : null
 			})));
 		}
 	}
 
-	getMappings(parentId = '') {
-		const mappings = {};
-		const parentScope = getScope(parentId);
-
-		for (const [id, info] of this.entries()) {
-			const scope = getScope(info.fullId);
-			if (scope && scope === parentScope) {
-				mappings[id] = path.posix.join('..', info.fullId.split('/')[1]);
-			} else {
-				mappings[id] = path.posix.join(parentId.replace(/[^/]+/gu, '..'), info.fullId);
-			}
-		}
-
-		return mappings;
+	getMappings() {
+		return Object.fromEntries([...this.entries()].map(([id, {fullId}]) => [id, fullId]));
 	}
 }
