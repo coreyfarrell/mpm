@@ -5,7 +5,14 @@
 	"description": "Mapped Package Manager Demo",
 	"author": "Corey Farrell",
 	"license": "MIT",
+	"scripts": {
+		"test:cjs": "node --experimental-loader=../bundled-loader.js test.cjs",
+		"test:mjs": "node --experimental-loader=../bundled-loader.js test.mjs",
+		"install": "node ../install.js",
+		"test": "npm run test:cjs && npm run test:mjs"
+	},
 	"dependencies": {
-		"@cfware/shadow-element": "^0.13.0"
+		"uhandlers": "=0.2.0",
+		"pify": "=5.0.0"
 	}
 }

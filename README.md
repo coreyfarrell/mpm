@@ -2,10 +2,25 @@
 
 Mapped Package Manager Experiment
 
+
 ## Usage
 
-Enter the `demo` directory and run `node ../install.js`.  This will create a `node_modules`
-directory in the proposed layout.
+Run `npm install` to install dependencies and build the ESM/CJS loader bundles.
+
+Enter the `demo` directory then run:
+```sh
+npm run install
+npm test
+```
+
+Note `npm run install`, not `npm install`.
+
+The `--experimental-loader` flag needs to be specified manually and `bin` executables are
+not linked to `node_modules/.bin` by the `install.js` script.  The goal is not to provide
+a fully functional package manager but to show a proof of concept for `node_modules`
+to never duplicate any modules.  Bundled dependencies have not been tested, some broken
+edges likely exist in this area.
+
 
 ### Environment
 

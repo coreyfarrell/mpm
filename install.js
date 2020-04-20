@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import {Tree} from './tree.js';
+import {Tree} from './lib/tree.js';
 
 const tree = new Tree();
 tree.build();
