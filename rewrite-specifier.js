@@ -3,7 +3,7 @@ import {LoadMappings} from './load-mappings.js';
 import {isBareSpecifier} from './is-bare-specifier.js';
 import {specifierPackage} from './specifier-package.js';
 
-const moduleMappings = Symbol.for('@cfware/mpm:mappings');
+const moduleMappings = Symbol.for('@coreyfarrell/mpm:mappings');
 if (!module[moduleMappings]) {
 	Object.defineProperty(module, moduleMappings, {value: new LoadMappings()});
 }

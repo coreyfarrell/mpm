@@ -1,4 +1,4 @@
-# @cfware/mpm
+# @coreyfarrell/mpm
 
 Mapped Package Manager Experiment
 
