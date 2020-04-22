@@ -34,6 +34,7 @@
 	},
 	"devDependencies": {
 		"@cfware/lint": "^1.4.0",
+		"make-dir": "=3.0.2",
 		"rollup": "^2.6.1"
 	}
 }

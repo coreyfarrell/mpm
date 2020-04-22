@@ -2,4 +2,7 @@
 import {Tree} from './lib/tree.js';
 
 const tree = new Tree();
-tree.build();
+tree.build().catch(error => {
+	console.error(error);
+	process.exit(1);
+});
