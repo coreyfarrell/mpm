@@ -2,21 +2,21 @@
 	"name": "mpm-demo",
 	"version": "0.1.0",
 	"private": true,
+	"type": "module",
 	"description": "Mapped Package Manager Demo",
 	"author": "Corey Farrell",
 	"license": "MIT",
 	"scripts": {
-		"test:cjs": "node --experimental-loader=../bundled-loader.js test.cjs",
-		"test:mjs": "node --experimental-loader=../bundled-loader.js test.mjs",
-		"test:linked1": "node --experimental-loader=../bundled-loader.js test-linked1.mjs",
-		"test:linked2": "node --experimental-loader=../bundled-loader.js test-linked2.mjs",
 		"install": "node ../install.js",
-		"test": "npm run test:cjs && npm run test:mjs && npm run test:linked1"
+		"test": "node --experimental-loader=../bundled-loader.js --no-warnings test/index.js"
 	},
 	"dependencies": {
 		"uhandlers": "=0.2.0",
 		"linked-package1": "file:linked-package1",
 		"linked-package2": "file:../linked-package2",
 		"pify": "=5.0.0"
+	},
+	"devDependencies": {
+		"libtap": "^0.3.0"
 	}
 }

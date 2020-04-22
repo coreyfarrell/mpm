@@ -8,6 +8,6 @@
 	"author": "Corey Farrell",
 	"license": "MIT",
 	"dependencies": {
-		"make-dir": "=3.0.2"
+		"make-dir": "=3.1.0"
 	}
 }

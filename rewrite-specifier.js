@@ -17,7 +17,7 @@ export function rewriteSpecifier(specifier, parentURL) {
 		if (importPackage in sourceScope) {
 			return [].concat(
 				sourceScope[importPackage],
-				importPackage.slice(importPackage.length) || []
+				specifier.slice(importPackage.length + 1) || []
 			).join('/');
 		}
 	}

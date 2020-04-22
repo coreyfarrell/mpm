@@ -5,9 +5,9 @@
 	"type": "module",
 	"bin": "./install.js",
 	"scripts": {
-		"prepublish": "rollup -c",
-		"test": "cfware-lint .",
-		"demo": "cd demo && node ../install.js"
+		"prepare": "rollup -c",
+		"pretest": "cfware-lint . && cd demo && rimraf node_modules && node ../install.js",
+		"test": "cd demo && npm test"
 	},
 	"engines": {
 		"node": ">=13.13.0"
@@ -34,7 +34,8 @@
 	},
 	"devDependencies": {
 		"@cfware/lint": "^1.4.0",
-		"make-dir": "=3.0.2",
+		"make-dir": "=3.1.0",
+		"rimraf": "^3.0.2",
 		"rollup": "^2.6.1"
 	}
 }
